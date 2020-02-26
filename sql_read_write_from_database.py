@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[ ]:
-
-
 #!/usr/bin/env python3
 
 from keras.models import load_model
@@ -21,8 +17,6 @@ from sklearn.model_selection import train_test_split
 import sys
 from sqlalchemy import create_engine
 
-
-# In[2]:
 
 
 class read_train_model():
@@ -120,9 +114,6 @@ class read_train_model():
         except:
             print('error :',sys.exc_info()[0])
             raise
-
-
-# In[ ]:
 
 
 sql_query=sys.argv[1]
