@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
 
 
 #importing dependencies
@@ -151,7 +150,6 @@ class Read_train:
     
 
 
-# In[ ]:
 
 
 
