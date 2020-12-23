@@ -33,8 +33,7 @@ class read_train_model():
         
     def read_data(self):
         
-        engine = create_engine('mysql+mysqldb://root:*********@127.0.0.1:3306/msf_schema', echo=False)
-        #conn = engine.connect()
+        engine = create_engine('mysql+mysqldb://root:*********@127.0.0.1:3306/msf_schema', echo=False
     
         self.SQL_Query = pd.read_sql_query(self.sql_query, engine)
 
