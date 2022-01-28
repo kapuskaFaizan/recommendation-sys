@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-#!/usr/bin/env python3
-
 from keras.models import load_model
 from keras import regularizers
 import pandas as pd
@@ -33,22 +29,16 @@ class read_train_model():
         
     def read_data(self):
         
-        engine = create_engine('mysql+mysqldb://root:*********@127.0.0.1:3306/msf_schema', echo=False
-    
+        engine = create_engine('mysql+mysqldb://root:*********@127.0.0.1:3306/msf_schema', echo=False   
         self.SQL_Query = pd.read_sql_query(self.sql_query, engine)
-
         self.df_in = pd.DataFrame(self.SQL_Query, columns=['UserId','PostId','Likes','Shares','Comments','Downloads','Views'])
         self.df_in['Rating']=self.df_in['Likes']+self.df_in['Comments']+self.df_in['Shares']+self.df_in['Downloads']+self.df_in['Views']
         self.df_in.drop(['Likes','Comments','Shares','Downloads','Views'],axis=1,inplace=True)
-        
-
         self.df_train,self.df_test =train_test_split(self.df_in, test_size = 0.1,random_state = 42 )
-
         self.n_users = len(self.df_in.UserId.unique()) 
         self.n_posts = len(self.df_in.PostId.unique())
         self.max_user,self.max_post=max(self.df_in.UserId),max(self.df_in.PostId)
         
-
     def define_model(self):
         post_input = Input(shape=[1], name="post-Input")
         post_embedding = Embedding(self.max_post+1,20,  name="post-Embedding")(post_input)
@@ -63,7 +53,6 @@ class read_train_model():
         user_vec = Flatten(name="Flatten-Users")(l2)
 
         product_layer = Dot(name="Dot",axes=1)([post_vec, user_vec])
-
         fully_connected_layer = Dense(40,activation ='relu')(product_layer)
         fully_connected_layer_2 = Dense(40,activation ='relu')(fully_connected_layer)
         fully_connected_layer_3 = Dense(40,activation ='relu')(fully_connected_layer_2)
